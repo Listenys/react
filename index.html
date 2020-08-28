@@ -5,16 +5,60 @@
 	<title>React</title>
 	<script crossorigin src="https://unpkg.com/react@16/umd/react.development.js"></script>
 	<script crossorigin src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
-	<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+	<script src="js/babel.min.js"></script>
 </head>
 <body>
-	<div id="root">
-		
-	</div>
-	<script type="text/babel">
+	<div id="app1"></div>
+	<div id="app2"></div>
+	<div id="app3"></div>
+	<div id="app4"></div>
+	<script type="text/babel" >
 		ReactDOM.render(
-		<h1>hello,world</h1>,
-		document.getElementById('root')
+			<h1>hello,world.</h1>,
+			document.getElementById('app1')
+		);
+
+		function formatName(user){
+			return user.firstName + ' ' + user.lastName;
+		}
+		const user={
+			firstName:'harry',
+			lastName:'potter'
+		};
+		const element = (
+			<h1>hello,{formatName(user)}</h1>
+		);
+		ReactDOM.render(
+			element,
+			document.getElementById('app2')
+		);
+
+		function tick(){
+			const element = (
+				<div>
+					<h1>hello,world.</h1>
+					<h2>it is {new Date().toLocaleTimeString()}</h2>
+				</div>
+			);
+			ReactDOM.render(element,document.getElementById('app3'));
+		}
+		setInterval(tick,1000);
+
+		function Welcome(props){
+			return <h1>hello,{props.name}</h1>;
+		}
+		function Reaptwl(){
+			return(
+				<div>
+					<Welcome name="tom" />
+					<Welcome name="harry" />
+					<Welcome name="jary" />
+				</div>
+			);
+		}
+		ReactDOM.render(
+			<Reaptwl />,
+			document.getElementById('app4')
 		);
 	</script>
 </body>
